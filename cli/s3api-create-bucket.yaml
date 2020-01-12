@@ -1,0 +1,10 @@
+ACL: private  # The canned ACL to apply to the bucket. Valid values are: private, public-read, public-read-write, authenticated-read.
+Bucket: 'serverless-workshop-prime' # [REQUIRED] The name of the bucket to create.
+CreateBucketConfiguration: # The configuration information for the bucket.
+  LocationConstraint: us-west-2  # Specifies the Region where the bucket will be created. Valid values are: EU, eu-west-1, us-west-1, us-west-2, ap-south-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, sa-east-1, cn-north-1, eu-central-1.
+GrantFullControl: '' # Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.
+GrantRead: '' # Allows grantee to list the objects in the bucket.
+GrantReadACP: '' # Allows grantee to read the bucket ACL.
+GrantWrite: '' # Allows grantee to create, overwrite, and delete any object in the bucket.
+GrantWriteACP: '' # Allows grantee to write the ACL for the applicable bucket.
+ObjectLockEnabledForBucket: true # Specifies whether you want S3 Object Lock to be enabled for the new bucket.

@@ -1,0 +1,30 @@
+FunctionName: 'serverless-demo'  # [REQUIRED] The name of the Lambda function.
+Runtime: nodejs12.x # [REQUIRED] The identifier of the function's runtime. Valid values are: nodejs, nodejs4.3, nodejs6.10, nodejs8.10, nodejs10.x, nodejs12.x, java8, java11, python2.7, python3.6, python3.7, python3.8, dotnetcore1.0, dotnetcore2.0, dotnetcore2.1, nodejs4.3-edge, go1.x, ruby2.5, provided.
+Role: 'arn:aws:iam::916355132303:role/LambdaFullAccess' # [REQUIRED] The Amazon Resource Name (ARN) of the function's execution role.
+Handler: 'bundle.handler' # [REQUIRED] The name of the method within your code that Lambda calls to execute your function.
+Code: # [REQUIRED] The code for the function.
+  # ZipFile: !!binary 'file://dist/bundle.zip'  # The base64-encoded contents of the deployment package.
+  S3Bucket: 'serverless-workshop-prime' # An Amazon S3 bucket in the same AWS Region as your function.
+  S3Key: 'bundle.zip' # The Amazon S3 key of the deployment package.
+  # S3ObjectVersion: '' # For versioned objects, the version of the deployment package object to use.
+Description: 'A simple demo lambda for the serverless workshop' # A description of the function.
+Timeout: 30 # The amount of time that Lambda allows a function to run before stopping it.
+MemorySize: 512 # The amount of memory that your function has access to.
+Publish: true # Set to true to publish the first version of the function during creation.
+# VpcConfig: # For network connectivity to AWS resources in a VPC, specify a list of security groups and subnets in the VPC.
+#   SubnetIds:  # A list of VPC subnet IDs.
+#   - ''
+#   SecurityGroupIds: # A list of VPC security groups IDs.
+#   - ''
+# DeadLetterConfig: # A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing.
+#   TargetArn: ''  # The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.
+Environment: # Environment variables that are accessible from function code during execution.
+  Variables:  # Environment variable key-value pairs.
+    LOG_LEVEL: 'DEBUG'
+# KMSKeyArn: '' # The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt your function's environment variables.
+TracingConfig: # Set Mode to Active to sample and trace a subset of incoming requests with AWS X-Ray.
+  Mode: PassThrough  # The tracing mode. Valid values are: Active, PassThrough.
+Tags: # A list of tags to apply to the function.
+  project: 'serverless-workshop'
+# Layers: # A list of function layers to add to the function's execution environment.
+# - ''

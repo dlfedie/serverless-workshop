@@ -1,0 +1,29 @@
+{
+  "name": "serverless-workshop",
+  "version": "1.0.0",
+  "description": "A simple serverless demo for the workshop.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "webpack": "webpack",
+    "zip": "node scripts/zip.js",
+    "bundle": "webpack && npm run-script zip"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abiessener/serverless-workshop.git"
+  },
+  "author": "Adam Biessener",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abiessener/serverless-workshop/issues"
+  },
+  "homepage": "https://github.com/abiessener/serverless-workshop#readme",
+  "devDependencies": {
+    "archiver": "^3.1.1",
+    "webpack": "^4.41.5"
+  },
+  "dependencies": {
+    "webpack-cli": "^3.3.10"
+  }
+}

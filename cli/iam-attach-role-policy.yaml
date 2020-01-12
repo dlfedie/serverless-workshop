@@ -1,0 +1,2 @@
+RoleName: 'LambdaFullAccess'  # [REQUIRED] The name (friendly name, not ARN) of the role to attach the policy to.
+PolicyArn: 'arn:aws:iam::aws:policy/AWSLambdaFullAccess' # [REQUIRED] The Amazon Resource Name (ARN) of the IAM policy you want to attach.
