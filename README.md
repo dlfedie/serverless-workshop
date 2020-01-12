@@ -48,6 +48,9 @@ To avoid having to type your password in all the time, add an SSH key to your Gi
 
 ## Workshop Agenda
 
+### AWS CLI
+https://docs.aws.amazon.com/cli/latest/index.html
+
 #### Create IAM user
 * Create user
 * Download the csv!
@@ -59,54 +62,59 @@ To avoid having to type your password in all the time, add an SSH key to your Gi
 * Sign out, then sign in as that user
 
 #### Configure AWS CLI
-`$ aws2 configure`
+> `$ aws2 configure` \
+Credentials from CSV \
+Region: us-west-2 \
+Output: yaml \
 
-* Credentials from CSV
-* Region: us-west-2
-* Output: yaml
-
-verify: `$ aws2 sts get-caller-identity`
+>verify: \
+`$ aws2 sts get-caller-identity`
 
 
 #### Set up IAM Role
-`$ aws2 iam create-role --generate-cli-skeleton yaml-input > cli/iam-create-role.yaml`
+>Create role (generate skeleton): \
+`$ aws2 iam create-role --generate-cli-skeleton yaml-input > cli/iam-create-role.yaml` \
+then, edit those values
 
-^ edit those values
+>Create role (run command): \
+`$ aws2 iam create-role --cli-input-yaml file://cli/iam-create-role.yaml` \
+note: file path is relative to working directory
 
-`$ aws2 iam create-role --cli-input-yaml file://cli/iam-create-role.yaml` <- file path is relative to working directory
+note: `iam-trust-relationship.json` (pre-existing in this repo) says "this role can be assumed by Lambdas"
 
-note: `iam-trust-relationship.json` says "this role can be assumed by Lambdas"
+> Attach policies (generate skeleton): \
+`$ aws2 iam attach-role-policy --generate-cli-skeleton yaml-input > cli/iam-attach-role-policy.yaml` \
+note: Always edit the values that get spit out by these "generate skeleton" commands
 
-Attach policies (generate skeleton): `$ aws2 iam attach-role-policy --generate-cli-skeleton yaml-input > cli/iam-attach-role-policy.yaml`
-
-^ edit those values
-
-Attach policies(run command): `$ aws2 iam attach-role-policy --cli-input-yaml file://cli/iam-attach-role-policy.yaml`
+> Attach policies(run command): \
+`$ aws2 iam attach-role-policy --cli-input-yaml file://cli/iam-attach-role-policy.yaml`
 
 #### Package & bundle our code
-`$ npm install`
-
+>`$ npm install` \
 `$ npm run-script bundle`
 
-NOTE: Further explanation of this step is available on demand. 
+note: Further explanation of this step is available on demand. 
 
 #### Set up S3
-Create bucket (generate skeleton): `$ aws2 s3api create-bucket --generate-cli-skeleton yaml-input > cli/s3api-create-bucket.yaml`
+>Create bucket (generate skeleton): \
+`$ aws2 s3api create-bucket --generate-cli-skeleton yaml-input > cli/s3api-create-bucket.yaml` \
+note: s3 bucket name uniqueness
 
-^ edit those values -- note s3 bucket name uniqueness
+>Create bucket (run command): \
+`$ aws2 s3api create-bucket --cli-input-yaml file://cli/s3api-create-bucket.yaml`
 
-Create bucket (run command): `$ aws2 s3api create-bucket --cli-input-yaml file://cli/s3api-create-bucket.yaml`
-
-Upload code (run command): `$ aws2 s3 cp dist/bundle.zip s3://serverless-workshop-prime/bundle.zip` <-- change s3 bucket name
+>Upload code (run command): \
+`$ aws2 s3 cp dist/bundle.zip s3://serverless-workshop-prime/bundle.zip` \
+note: change s3 bucket name
 
 #### Create our Lambda!
-https://docs.aws.amazon.com/cli/latest/reference/lambda/index.html
+>Create Lambda (generate skeleton): \
+`$ aws2 lambda create-function --generate-cli-skeleton yaml-input > cli/lmabda-create-function.yaml`
 
-Create Lambda (generate skeleton): `$ aws2 lambda create-function --generate-cli-skeleton yaml-input > cli/lmabda-create-function.yaml`
-
-Create Lambda (run command) `$ aws2 lambda create-function --cli-input-yaml file://cli/lambda-create-function.yaml`
-
+>Create Lambda (run command) \
+`$ aws2 lambda create-function --cli-input-yaml file://cli/lambda-create-function.yaml` \
 note: differences in web docs vs "live docs" in the CLI!
 
 #### Create API Gateway resource
 
+TODO
